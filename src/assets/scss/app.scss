@@ -1,0 +1,62 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+body{
+  display: block;
+  font-size: 14px;
+  a{
+    text-decoration: none;
+  }
+  ul{
+    list-style: none ;
+  }
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video{
+  margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+/**** Variables ****/
+$light-gray : #e5e5e5;
+
+
+
+/**************Header Section******************/
+.static-slide{
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+  .text{
+    padding: 16px 0;
+    border-left: 1px solid $light-gray;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    text-align: center;
+    i{
+      color: #98ab3f;
+      font-size: 28px;
+      font-family: FontAwesome;
+      margin-right: 12px;
+      display: inline-block;
+    }
+    p{
+      display: inline-block;
+      margin: 2px 0 0;
+      vertical-align: top;
+      color: #6d604c;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+  .box3{ 
+    .text{
+      border-right: 1px solid $light-gray;
+    }
+  }
+}
