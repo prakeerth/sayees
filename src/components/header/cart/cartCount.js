@@ -5,7 +5,7 @@ class CartCount extends Component {
     render() {
         return (
             <div className="cart-count">
-               
+               <span>0</span>
             </div>
         );
     }

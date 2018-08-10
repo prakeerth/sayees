@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import{Link} from 'react-router-dom';
 
+import Cart from './cart/cart';
+import Menu from './menu/menu';
+
 class Header extends Component {
     render() {
         return (
@@ -30,17 +33,20 @@ class Header extends Component {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="row">
-                        <div className="header-middle">
-                            <div className="pos_logo col-lg-4 col-sm-4 col-md-4 col-xs-12"> 
-                                <a href="javascript:void(0)" title="Sayees"> 
-                                    Sayees
-                                </a>
-                            </div>
-                            <div className="header-middle-right col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                                
-                            </div>
+                    <div className="row header-middle">
+                        <div className="pos_logo col-lg-4 col-sm-4 col-md-4 col-xs-12"> 
+                            <a href="javascript:void(0)" title="Sayees"> 
+                                Sayees
+                            </a>
                         </div>
+                        <div className="header-middle-right col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                            <Cart />
+                        </div>
+                    </div>
+                </div>
+                <div class="header-menu">
+                    <div class="container">     
+                        <Menu />
                     </div>
                 </div>
             </header>

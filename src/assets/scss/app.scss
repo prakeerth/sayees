@@ -1,7 +1,76 @@
+/************************Mixins************************/
+@mixin transition($what: all, $time: 300ms, $how: ease-in-out) {
+  -webkit-transition: $what $time $how;
+  -moz-transition:    $what $time $how;
+  -ms-transition:     $what $time $how;
+  -o-transition:      $what $time $how;
+  transition:         $what $time $how;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+// generic transform
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+    -o-transform: $transforms;
+   -ms-transform: $transforms;
+-webkit-transform: $transforms;
+       transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+@include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale1, $scale2, $scale3) {
+@include transform(scale3d($scale1, $scale2, $scale3));
+} 
+// translate
+@mixin translate ($x, $y) {
+@include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+@include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+ moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+   -ms-transform-origin: $origin;
+-webkit-transform-origin: $origin;
+       transform-origin: $origin;
+}
+
+
+
+
+
+
 *{
   margin: 0;
   padding: 0;
+  outline: 0 !important;
   font-family: 'Open Sans';
+  @include transition(all,300ms,ease-out);
+}
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none !important;
+    color: inherit; 
+  }
 }
 body{
   display: block;
@@ -11,6 +80,10 @@ body{
   }
   ul{
     list-style: none ;
+    margin-bottom: 0;
+  }
+  h1,h2,h3,h4,h5,h6{
+    font-weight: 300; 
   }
 }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video{
@@ -58,5 +131,198 @@ $light-gray : #e5e5e5;
     .text{
       border-right: 1px solid $light-gray;
     }
+  }
+}
+
+.header-middle{
+  padding: 24px 0;
+  position: relative;
+  
+  .pos_logo{
+    a{
+      font-size: 40px;
+      color: #485f27;
+    }
+  }
+  .header-middle-right{
+    position: static;
+    text-align: right;
+    .cart-section{
+      position: relative;
+      font-size: 30px;
+      color: #98ab3f;
+    }
+    .cart-count{
+      position: absolute;
+      top: -2px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #6d604c;
+      color: #ffffff;
+    }
+    span{
+      font-size: 12px;
+      text-align: center;
+      line-height: 20px;
+      display: block;
+    }
+  }
+}
+.header-menu{
+  background: #485f27;
+  .vega-menu{
+    position: relative;
+    .left-menu-title{
+      position: relative;
+      overflow: hidden;
+      background: #98ab3f;
+      cursor: pointer;
+      padding: 0 15px 0 25px;
+      border-radius: 5px 5px 0 0;
+      margin-top: 11px;
+      margin-bottom: 0;
+      color: #ffffff;
+      font-size: 24px;
+      min-height: 40px;
+      line-height: 40px;
+    }
+    .left-category-menu{
+      width: 100%;
+      background: #fff;
+      position: absolute;
+      border: 2px solid #98ab3f;
+      border-radius: 0 0 5px 5px;
+      border-top: 0;
+      z-index: 10;
+      li{
+        position: relative;
+        a{
+          &.left-menu-anchor{
+            position: relative;
+            display: block;
+            overflow: hidden;
+            line-height: 30px;
+            text-transform: capitalize;
+            word-wrap: break-word;
+            color: #4c4c4c;
+            font-family: Roboto;
+            padding: 10px 20px 10px 30px;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 16px;
+          }
+        }
+        .wrap-popup{
+          position: absolute;
+          top: 0;
+          left: 115%;
+          z-index: 1;
+          opacity: 0;
+          width: 840px;
+          .box-popup{
+            display: none;
+            position: absolute;
+            top: 0 !important;
+            left: 0 !important;
+            width: auto !important; 
+            z-index: 10;
+            @include box-shadow( 3px, 6px, 12px, rgba(0,0,0,0.3));
+            background: #fff;
+            padding: 20px 20px;
+            overflow: hidden;
+          }
+          .left-side-sub-menu{ 
+            li{
+              line-height: 36px;
+              a{
+                color: #000000;
+                font-weight: 600;
+              }
+            }
+          }
+        }  
+        &:hover{
+          a{
+            &.left-menu-anchor{
+              background: #98ab3f;
+              color: #fff;
+            }
+          }
+          .box-popup{
+            display: block;
+          }
+          .wrap-popup{
+            left: 100%;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .mega-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    li{
+      text-transform: uppercase;
+      a{
+        line-height: 52px;
+        display: block;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 16px;
+        &:hover{
+          color: #98ab3f;
+        }
+      }
+    }
+  }
+}
+
+
+.main-content{
+  margin-bottom: 50px;
+}
+.pos-bannerslide {
+  position: relative;
+  .pos-slideshow{
+    position: relative;
+    margin-top: 30px;
+    overflow: hidden;
+  }
+  .banner-slide{
+    margin-top: 30px;
+    .box-col{     
+      li{    
+        position: relative;
+        overflow: hidden;    
+        img{
+          @include scale(1,1,1);
+        }
+        &:hover{
+          img{
+            @include scale(1.1,1.1,1.1); 
+          }
+        }
+        &:nth-child(2){
+          margin: 20px 0;
+        }
+      }
+            
+    }
+  }
+}
+
+
+
+.footer-section{
+  border-top: 1px solid #e5e5e5;
+  padding: 25px 0;
+  .copy-rights{
+    margin: 0;
+    color: #888;
+    font-size: 13px;
+    line-height: 25px;
   }
 }
